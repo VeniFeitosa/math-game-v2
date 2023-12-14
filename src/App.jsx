@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Game from './components/Game.jsx'
 
@@ -159,15 +159,15 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
-        <Route path={`/`} element={<Home dificuldade={dificuldade} setDificuldade={setDificuldade} dataGame={dataGame}/>} />
+        <Route path='/' element={<Home dificuldade={dificuldade} setDificuldade={setDificuldade} dataGame={dataGame}/>} />
         <Route path='/multi' element={<Game dataGame={dataGame} dificuldade={dificuldade} tipo='multi'/>} />
-        <Route path={`/adicao`} element={<Game dataGame={dataGame} dificuldade={dificuldade} tipo='adicao'/>} />
+        <Route path='/adicao' element={<Game dataGame={dataGame} dificuldade={dificuldade} tipo='adicao'/>} />
         <Route path='/subtracao' element={<Game dataGame={dataGame} dificuldade={dificuldade} tipo='subtracao'/>}/>
         <Route path='/divisao' element={<Game dataGame={dataGame} dificuldade={dificuldade} tipo='divisao'/>}/>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
   
 }
