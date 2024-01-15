@@ -5,45 +5,48 @@ import Problema from '../components/Problema'
 import Pontuacao from '../components/Pontuacao'
 import Countdown from '../components/Countdown'
 import FimDeJogo from '../components/FimDeJogo'
+import { useGameContext } from '../hooks/useGameContext'
 
-function Adicao({dataGame, dificuldade}) {
+function Adicao() {
 
-  useEffect(() => {
-    // Chama a função para gerar novos números apenas uma vez
-    // dataGame.setNumeros(dataGame.gerarNumeros('adicao', dificuldade));
-    dataGame.reiniciar('adicao', dificuldade)
-    dataGame.setTipo('adicao')
-    // dataGame.setTimeEnded(false)
-  }, []);
+  const context = useGameContext()
 
-if (!dataGame.timeEnded) {
-  return (
-    <div className="row">
-      <div className='col-md-12 col-sm-12'>
-        <div className='countdown'>
-          <Countdown setTimeEnded={dataGame.setTimeEnded} time={dataGame.tempo}/>
+  // useEffect(() => {
+  //   // Chama a função para gerar novos números apenas uma vez
+  //   // context.setNumeros(context.gerarNumeros('adicao', context.dificuldade ));
+  //   context.reiniciar('adicao', context.dificuldade )
+  //   context.setTipo('adicao')
+  //   // context.setTimeEnded(false)
+  // }, []);
+
+  if (!context.timeEnded) {
+    return (
+      <div className="row">
+        <div className='col-md-12 col-sm-12'>
+          <div className='countdown'>
+            <Countdown />
+          </div>
+          <Problema />
+          <input autoFocus onKeyDown={(e) => context.enviar(e.key)} type="text" onChange={ (e) => context.setResposta(e.target.value)} value={context.resposta}/>
+          <Pontuacao />
         </div>
-        <Problema tipo='adicao' n1={dataGame.numeros[0]} n2={dataGame.numeros[1]} />
-        <input autoFocus onKeyDown={(e) => dataGame.enviar(e.key, 'adicao', dificuldade)} type="text" onChange={ (e) => dataGame.setResposta(e.target.value)} value={dataGame.resposta}/>
-        <Pontuacao acertou={dataGame.acertou} acertos={dataGame.acertos} erros={dataGame.erros} />
+        <div className="col-md-12 col-sm-12 mb-4">
+            <Link className='jogar btn-primary' style={{display: 'inline-block'}} to={'/'}>Menu Principal</Link>
+        </div>
       </div>
-      <div className="col-md-12 col-sm-12 mb-4">
-          <Link className='jogar btn-primary' style={{display: 'inline-block'}} to={'/'}>Menu Principal</Link>
+      
+    )
+  }else{
+    return (
+      <div className="row">
+        <div className='col-md-12 col-sm-12'>
+          <FimDeJogo />
+        </div>
       </div>
-    </div>
+      
+    )
+  }
     
-  )
-}else{
-  return (
-    <div className="row">
-      <div className='col-md-12 col-sm-12'>
-        <FimDeJogo acertos={dataGame.acertos} erros={dataGame.erros}  totalProblemas={dataGame.totalProblemas} reiniciar={() => dataGame.reiniciar('adicao', dificuldade)} time={dataGame.tempo}/>
-      </div>
-    </div>
-    
-  )
-}
-  
 }
 
 export default Adicao

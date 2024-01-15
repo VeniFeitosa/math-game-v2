@@ -1,32 +1,36 @@
 import { useState, useEffect } from 'react'
+import { useGameContext } from '../hooks/useGameContext'
 
-/**
- * Esse componente é responsável por renderizar o contador
- */
-function Countdown({setTimeEnded, time}) {
-  const [count, setCount] = useState(time)
+function Countdown() {
+  const { setTimeEnded, tempo } = useGameContext()
+  const [count, setCount] = useState(tempo)
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCount((prevCount) => {
         if (prevCount === 0) {
-          clearInterval(timer); // Limpa o intervalo quando chega a 0
-          setTimeEnded(true)  // Seta o estado de timeEnded para true, indicando que a partida acabou
+          clearInterval(timer);
           return prevCount;
         } else {
           return prevCount - 1;
         }
       });
-    }, 1000)
-    
-    return () => {
-      clearInterval(timer)
+    }, 1000);
+
+    // Adiciona um efeito secundário para atualizar o estado fora da renderização principal
+    if (count === 0) {
+      setTimeEnded(true);
     }
-  }, [])
+
+    return () => {
+      clearInterval(timer);
+    };
+    
+  }, [count, setTimeEnded]);
 
   return (
     <div>
-      <h1 >Tempo: <span style={{color: count > 10 ? "" : "red"}}>{count}</span></h1>
+      <h1>Tempo: <span style={{ color: count > 10 ? "" : "red" }}>{count}</span></h1>
     </div>
   )
 }

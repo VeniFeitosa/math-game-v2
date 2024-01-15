@@ -1,11 +1,12 @@
 #root{
+    height: 100vh;
     text-align: center;
     font-family: sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 600px;
 }
+
 h1{
     font-size: 65px;
     margin-bottom: 25px;
@@ -41,9 +42,15 @@ input{
     border-radius: 10px;
 }
 
+.btnOperacao{
+    width: 350px;
+    font-size: 35px;
+    border-radius: 10px;
+}
+
 .dificuldades{
-    width: 250px;
-    font-size: 25px;
+    width: 350px;
+    font-size: 35px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -56,10 +63,7 @@ a{
 }
 
 .main{
-    /* height: 600px; */
     padding: 30px;
-    border: 1px solid black;
-    border-radius: 5px;
     align-items: center;
 }
 
@@ -88,12 +92,37 @@ p{
     input{
         width: 70%;
     }
-    h1{
+    /* h1{
         font-size: 50px;
-    }
+    } */
 
     .dificuldades{
-        width: 200px;
-        font-size: 20px;
+        width: 100%;
+        font-size: 36px;
+        /* flex-wrap: wrap;
+        justify-content: center; */
+    }
+
+    .btnOperacao{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 450px){
+    input{
+        width: 70%;
+    }   
+    h1{
+        font-size: 60px;
+    }
+    .dificuldades{
+        width: 100%;
+        font-size: 40px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btnOperacao{
+        width: 100%;
     }
 }
