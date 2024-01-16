@@ -7,7 +7,6 @@ function Input({tipo}) {
 
     const handleResposta = (key) =>{
         if (key === 'Enter' && !context.loading) {
-            // context.setResposta(respostaInput)
             context.enviar(respostaInput, tipo)
             setRespostaInput('')
         }

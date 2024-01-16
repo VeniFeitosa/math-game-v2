@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useGameContext } from '../hooks/useGameContext'
 
 function Countdown() {
+
   const { setTimeEnded, tempo } = useGameContext()
   const [count, setCount] = useState(tempo)
 
@@ -17,7 +18,6 @@ function Countdown() {
       });
     }, 1000);
 
-    // Adiciona um efeito secundário para atualizar o estado fora da renderização principal
     if (count === 0) {
       setTimeEnded(true);
     }

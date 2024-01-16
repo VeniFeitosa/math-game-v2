@@ -24,14 +24,7 @@ function Game({tipo}) {
   useEffect(() => {
     context.reiniciar(tipo)
     setLoadingGame(false)
-    // context.setTipo(tipo)
   }, []);
-
-  // const handleResposta = (key) =>{
-  //   context.setResposta(respostaInput)
-  //   context.enviar(key)
-  // }
-
 
     if (context.loading && loadingGame) {
       return <h1>Loading...</h1>
@@ -40,7 +33,6 @@ function Game({tipo}) {
       /**
        * Se o tempo não tiver acabado, renderiza o jogo
        */
-      console.log(context)
       return (
         <div className="row">
           <div className='col-md-12 col-sm-12'>
@@ -48,7 +40,6 @@ function Game({tipo}) {
               <Countdown />
             </div>
               <Problema />
-            {/* <input autoFocus onKeyDown={console.log('show')} type="text" onChange={ (e) => context.setResposta(e.target.value)} value={context.resposta}/> */}
             <Input tipo={tipo}/>
             <Pontuacao />
           </div>

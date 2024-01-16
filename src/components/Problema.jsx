@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useGameContext } from '../hooks/useGameContext'
 
 /**
@@ -42,7 +42,6 @@ function Problema() {
         break;
     }
   }
-
   
 }
 

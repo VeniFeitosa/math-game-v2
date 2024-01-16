@@ -1,9 +1,15 @@
 import { createContext, useEffect, useState } from "react";
 
+/**
+ * Essa é o contexto que controla toda a lógia do jogo
+ * sendo responsável por todas as funções e estados do jogo
+ */
+
 export const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
+    
     useEffect(() => {
         loadDificuldade()
         setLoading(false)
@@ -18,7 +24,6 @@ export const GameProvider = ({ children }) => {
     const [timeEnded, setTimeEnded] = useState(false)
     const [tipo, setTipo] = useState('')
     const [tempo, setTempo] = useState(30)
-    // const [totalProblemas, setTotalProblemas] = useState(1)
 
     const dificuldades = {
     adicao: {
@@ -50,7 +55,6 @@ export const GameProvider = ({ children }) => {
      * 
      */
     const gerarNumeros = (tipo) => {
-        //aqui preciso ver se ainda tem tempo de responder a pergunta
         switch (tipo) {
             case 'adicao':
                 return [Math.ceil(Math.random() * dificuldades.adicao[dificuldade]), Math.ceil(Math.random() * dificuldades.adicao[dificuldade])]
@@ -78,6 +82,9 @@ export const GameProvider = ({ children }) => {
         })
     }
 
+    /**
+     * Essa função é responsável por carregar a dificuldade
+     */
     const loadDificuldade = () => {
         const dificuldade = localStorage.getItem('dificuldade')
         if (dificuldade) {
@@ -170,8 +177,6 @@ export const GameProvider = ({ children }) => {
         setTipo: setTipo,
         tempo: tempo,
         setTempo: setTempo,
-        // totalProblemas: totalProblemas,
-        // setTotalProblemas: setTotalProblemas,
         timeEnded: timeEnded,
         setTimeEnded: setTimeEnded,
         reiniciar: reiniciar,
